@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="de">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-fullscreen" />
+    <meta name="theme-color" content="#0a0a0a" />
+    <meta name="apple-mobile-web-app-title" content="Hamster" />
+    <meta name="description" content="Hamster vs. Cyber-Dinos – Run-and-gun Arcade-Shooter von Max Blusch. Im Browser spielen, auf Handy & PC." />
+    <title>Hamster vs. Cyber-Dinos</title>
+    <link rel="manifest" href="manifest.webmanifest" />
+    <link rel="icon" type="image/png" sizes="32x32" href="icons/favicon-32.png" />
+    <link rel="icon" href="icons/favicon.ico" sizes="16x16 32x32 48x48" />
+    <link rel="apple-touch-icon" sizes="180x180" href="icons/apple-touch-icon.png" />
+    <style>
+      html, body {
+        margin: 0;
+        padding: 0;
+        background: #0a0a0a;
+        height: 100%;
+        overflow: hidden;
+        font-family: system-ui, sans-serif;
+        color: #ccc;
+        /* No pinch-zoom, scrolling, text selection or long-press menus while playing */
+        touch-action: none;
+        overscroll-behavior: none;
+        -webkit-user-select: none;
+        user-select: none;
+        -webkit-touch-callout: none;
+        -webkit-tap-highlight-color: transparent;
+      }
+      body { height: 100dvh; }
+      /* Phaser (Scale.FIT + CENTER_BOTH) sizes and centres the canvas itself — centring it
+         again here would shift the picture away from where Phaser maps mouse/touch input */
+      #game {
+        position: absolute;
+        inset: 0;
+      }
+      #game canvas {
+        image-rendering: auto;
+        box-shadow: 0 0 60px rgba(0, 0, 0, 0.8);
+      }
+      #rotate {
+        display: none;
+        position: fixed;
+        inset: 0;
+        z-index: 10;
+        background: #0a0a0a;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        gap: 16px;
+        font-size: 20px;
+        text-align: center;
+      }
+      #rotate .icon { font-size: 64px; animation: turn 1.6s ease-in-out infinite; }
+      @keyframes turn { 0%, 30% { transform: rotate(0); } 60%, 100% { transform: rotate(90deg); } }
+      /* Phones held upright: ask to rotate (the game is landscape-only) */
+      @media (pointer: coarse) and (orientation: portrait) {
+        #rotate { display: flex; }
+      }
+    </style>
+    <script type="module" crossorigin src="./assets/index-40Y7fxRx.js"></script>
+  </head>
+  <body>
+    <div id="game"></div>
+    <div id="rotate"><div class="icon">📱</div><div>Bitte Handy quer halten</div></div>
+  </body>
+</html>
